@@ -1,673 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>静心一炷香 · 禅修冥想计时</title>
-
-    <!-- ==================== 样式 ==================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静心一炷香 · 禅修冥想白噪音</title>
     <style>
-        /* ---------- 基础重置 ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.8;
+            color: #1A1410;
             background: #F5F0EB;
-            color: #1A1410;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ---------- 通用按钮 ---------- */
-        .btn-primary {
-            display: inline-block;
-            background: linear-gradient(135deg, #FF6B00, #E85A00);
-            color: #fff;
-            font-weight: 700;
-            font-size: 18px;
-            padding: 16px 48px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.35);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(255, 107, 0, 0.45);
-        }
-        .btn-secondary {
-            display: inline-block;
-            background: transparent;
-            color: #FF6B00;
-            font-weight: 600;
-            font-size: 16px;
-            padding: 14px 36px;
-            border-radius: 50px;
-            border: 2px solid #FF6B00;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-secondary:hover {
-            background: #FF6B00;
-            color: #fff;
-        }
-
-        /* ---------- 顶部导航 ---------- */
-        .navbar {
-            padding: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .logo span {
-            color: #FF6B00;
-        }
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            font-size: 15px;
-            color: #5A4A3A;
-        }
-        .nav-links a:hover {
-            color: #FF6B00;
-        }
-        .nav-cta {
-            background: #FF6B00;
-            color: #fff !important;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-        }
-        .nav-cta:hover {
-            background: #E85A00 !important;
-        }
-
-        /* ---------- Hero 区域 ---------- */
-        .hero {
-            text-align: center;
-            padding: 60px 0 80px;
-        }
-        .hero .hero-icon {
-            display: block;
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 28px auto;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow:
-                0 8px 32px rgba(0,0,0,0.12),
-                0 0 0 1px rgba(0,0,0,0.04),
-                0 0 60px rgba(255,107,0,0.10);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .hero .hero-icon:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                0 12px 40px rgba(0,0,0,0.15),
-                0 0 0 1px rgba(0,0,0,0.04),
-                0 0 80px rgba(255,107,0,0.15);
-        }
-        .hero .hero-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .hero .badge {
-            display: inline-block;
-            background: #FF6B00;
-            color: #fff;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 4px 16px;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 16px;
-        }
-        .hero h1 .highlight {
-            color: #FF6B00;
-        }
-        .hero p {
-            font-size: 20px;
-            color: #5A4A3A;
-            max-width: 600px;
-            margin: 0 auto 32px;
-        }
-        .hero .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        /* ---------- 通用标题 ---------- */
-        .section-title {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .section-title h2 {
-            font-size: 36px;
-            font-weight: 700;
-        }
-        .section-title p {
-            font-size: 18px;
-            color: #5A4A3A;
-            margin-top: 8px;
-        }
-
-        /* ---------- 功能亮点 ---------- */
-        .features {
-            padding: 80px 0;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-        }
-        .feature-card {
-            background: #fff;
-            padding: 32px 28px;
-            border-radius: 20px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
-        .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-        }
-        .feature-card .icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-        .feature-card p {
-            font-size: 15px;
-            color: #5A4A3A;
-        }
-        .feature-card .tag {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #FF6B00;
-            background: #FFF0E8;
-            padding: 2px 12px;
-            border-radius: 50px;
-            margin-top: 10px;
-        }
-
-        /* ---------- 声音列表 ---------- */
-        .sounds {
-            padding: 80px 0;
-            background: #fff;
-            border-radius: 40px 40px 0 0;
-        }
-        .sound-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-        .sound-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            background: #F8F5F0;
-            border-radius: 12px;
-            font-size: 15px;
-        }
-        .sound-item .free {
-            color: #FF6B00;
-            font-size: 12px;
-            font-weight: 600;
-            margin-left: auto;
-        }
-        .sound-item .vip {
-            color: #D4A017;
-            font-size: 12px;
-            font-weight: 600;
-            margin-left: auto;
-        }
-
-        /* ---------- VIP 套餐 ---------- */
-        .pricing {
-            padding: 80px 0;
-        }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            margin-top: 16px;
-        }
-        .pricing-card {
-            background: #fff;
-            padding: 32px 24px;
-            border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-            border: 2px solid transparent;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            position: relative;
-        }
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-        }
-        .pricing-card.popular {
-            border-color: #FF6B00;
-        }
-        .pricing-card .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #FF6B00;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 16px;
-            border-radius: 50px;
-        }
-        .pricing-card .name {
-            font-size: 18px;
-            font-weight: 600;
-        }
-        .pricing-card .price {
-            font-size: 36px;
-            font-weight: 700;
-            margin: 12px 0 4px;
-        }
-        .pricing-card .price small {
-            font-size: 16px;
-            font-weight: 400;
-            color: #8A7A6A;
-        }
-        .pricing-card .original {
-            font-size: 15px;
-            color: #B0A098;
-            text-decoration: line-through;
-        }
-        .pricing-card .desc {
-            font-size: 14px;
-            color: #5A4A3A;
-            margin: 8px 0 16px;
-        }
-        .pricing-card .btn-price {
-            display: inline-block;
-            width: 100%;
-            padding: 14px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .pricing-card .btn-price.primary {
-            background: #FF6B00;
-            color: #fff;
-        }
-        .pricing-card .btn-price.primary:hover {
-            background: #E85A00;
-            transform: scale(1.02);
-        }
-        .pricing-card .btn-price.outline {
-            background: transparent;
-            color: #FF6B00;
-            border: 2px solid #FF6B00;
-        }
-        .pricing-card .btn-price.outline:hover {
-            background: #FF6B00;
-            color: #fff;
-        }
-
-        /* ---------- 用户评价 ---------- */
-        .testimonials {
-            padding: 80px 0;
-            background: #fff;
-            border-radius: 40px;
-        }
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-        }
-        .testimonial-card {
-            background: #F8F5F0;
-            padding: 24px;
-            border-radius: 16px;
-        }
-        .testimonial-card .stars {
-            color: #FFB800;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-        .testimonial-card p {
-            font-size: 15px;
-            color: #3A322A;
-            font-style: italic;
-        }
-        .testimonial-card .author {
-            margin-top: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #1A1410;
-        }
-
-        /* ---------- CTA 底部 ---------- */
-        .cta {
-            padding: 80px 0;
-            text-align: center;
-        }
-        .cta h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        .cta p {
-            font-size: 18px;
-            color: #5A4A3A;
-            max-width: 500px;
-            margin: 0 auto 32px;
-        }
-
-        /* ---------- 页脚 ---------- */
-        .footer {
-            padding: 40px 0;
-            border-top: 1px solid #E8E0D8;
-            text-align: center;
-            font-size: 14px;
-            color: #8A7A6A;
-        }
-        .footer .links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-        .footer .links a {
-            color: #5A4A3A;
-        }
-        .footer .links a:hover {
-            color: #FF6B00;
-        }
-
-        /* ---------- 响应式 ---------- */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 40px 0 60px;
-            }
-            .hero .hero-icon {
-                width: 100px;
-                height: 100px;
-                border-radius: 22px;
-                margin-bottom: 20px;
-            }
-            .hero h1 {
-                font-size: 34px;
-            }
-            .hero p {
-                font-size: 17px;
-            }
-            .section-title h2 {
-                font-size: 28px;
-            }
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                max-width: 380px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .nav-links {
-                display: none;
-            }
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            .btn-primary {
-                padding: 14px 32px;
-                font-size: 16px;
-            }
-        }
+        h1 { font-size: 32px; margin-bottom: 8px; }
+        .subtitle { font-size: 18px; color: #6B5A4A; margin-bottom: 32px; }
+        .icon { font-size: 64px; margin: 20px 0; }
+        .card { background: #FFFFFF; border-radius: 16px; padding: 24px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); text-align: left; }
+        .card h2 { font-size: 18px; margin-bottom: 8px; color: #2A2018; }
+        .card p, .card li { font-size: 15px; color: #4A3A2A; }
+        .card ul { padding-left: 20px; margin-top: 8px; }
+        .card ul li { margin-bottom: 4px; }
+        .link { color: #FF6B00; text-decoration: none; font-weight: 600; }
+        .link:hover { text-decoration: underline; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #E0D8D0; font-size: 14px; color: #8A7A6A; }
+        .footer a { color: #FF6B00; text-decoration: none; }
+        .badge { display: inline-block; background: #FF6B00; color: #fff; font-size: 12px; padding: 2px 12px; border-radius: 50px; margin-left: 8px; }
+        .links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 12px; }
     </style>
 </head>
-
 <body>
 
-    <!-- ============================================================ -->
-    <!-- 顶部导航 -->
-    <!-- ============================================================ -->
-    <div class="container">
-        <nav class="navbar">
-            <div class="logo">🕯️ 静心<span>一炷香</span></div>
-            <div class="nav-links">
-                <a href="#features">功能</a>
-                <a href="#sounds">声音</a>
-                <a href="#pricing">VIP</a>
-                <a href="#testimonials">评价</a>
-                <a href="#cta" class="nav-cta">立即下载</a>
-            </div>
-        </nav>
+    <div class="icon">🕯️</div>
+    <h1>静心一炷香</h1>
+    <div class="subtitle">一炷香的时间，让心回归宁静</div>
+
+    <div class="card">
+        <h2>📖 关于本应用</h2>
+        <p>静心一炷香是一款沉浸式禅修冥想计时工具。通过逼真的燃香动画、袅袅烟雾和精选的禅意声音，营造出沉浸式的静心氛围。</p>
+        <p>适合冥想、禅修、打坐、许愿、祈福、专注工作等时刻使用。</p>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- Hero 区域 -->
-    <!-- ============================================================ -->
-    <section class="hero container">
-        <div class="hero-icon">
-            <img src="incense_hero.png" alt="静心一炷香 App 图标" />
-        </div>
-        <div class="badge">🧘 禅修冥想 · 一炷香的时间</div>
-        <h1>
-            点燃一炷香，<br>
-            <span class="highlight">让心回归宁静</span>
-        </h1>
-        <p>
-            在喧嚣的世界里，给自己一炷香的时间。<br>
-            沉浸式燃香计时 · 白噪音 · 禅意冥想
-        </p>
-        <div class="btn-group">
-            <a href="#cta" class="btn-primary">🔥 免费下载体验</a>
-            <a href="#features" class="btn-secondary">了解更多</a>
-        </div>
-    </section>
+    <div class="card">
+        <h2>✨ 核心功能</h2>
+        <ul>
+            <li>🕯️ 逼真燃香动画 — 随倒计时精准燃烧</li>
+            <li>💨 袅袅烟雾 — 禅意悠然</li>
+            <li>🎵 14 首禅意声音 — 白噪音 · 自然 · 佛音 · 冥想</li>
+            <li>🧘 沉浸模式 — 燃香 5 秒自动隐去控件</li>
+            <li>📝 许愿语 — 写下心愿，首页展示</li>
+            <li>🎨 多款皮肤 — 浅色 · 深色 · 金色</li>
+        </ul>
+    </div>
 
-    <!-- ============================================================ -->
-    <!-- 功能亮点 -->
-    <!-- ============================================================ -->
-    <section class="features container" id="features">
-        <div class="section-title">
-            <h2>✨ 为什么选择静心一炷香</h2>
-            <p>每一个细节，都为你的静心时刻而设计</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="icon">🕯️</div>
-                <h3>逼真燃香动画</h3>
-                <p>香体随倒计时精准燃烧，红点呼吸光晕，底部涟漪荡漾，如临其境。</p>
-                <span class="tag">沉浸体验</span>
-            </div>
-            <div class="feature-card">
-                <div class="icon">💨</div>
-                <h3>袅袅烟雾</h3>
-                <p>多层烟青色摇摆烟柱，底部细起、逐步加胖，飘散如真，禅意悠然。</p>
-                <span class="tag">视觉疗愈</span>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🎵</div>
-                <h3>14 首禅意声音</h3>
-                <p>白噪音、自然之声、佛音、冥想频率……总有一首陪你静心。</p>
-                <span class="tag">听觉享受</span>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🧘</div>
-                <h3>沉浸模式</h3>
-                <p>燃香 5 秒自动隐去所有控件，只有香、烟、愿，不被干扰。</p>
-                <span class="tag">深度专注</span>
-            </div>
-            <div class="feature-card">
-                <div class="icon">📝</div>
-                <h3>许愿语</h3>
-                <p>写下你的心愿，首页居中展示，让每一次燃香都有意义。</p>
-                <span class="tag">温暖陪伴</span>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🎨</div>
-                <h3>多款皮肤</h3>
-                <p>浅色宣纸、深色禅意、金色庄严，选你喜欢的氛围。</p>
-                <span class="tag">个性定制</span>
-            </div>
-        </div>
-    </section>
+    <div class="card">
+        <h2>👑 VIP 会员</h2>
+        <ul>
+            <li><strong>连续包月</strong>：¥6.0/月</li>
+            <li><strong>连续包年</strong>：¥38.0/年（月均不到¥3.2）</li>
+        </ul>
+        <p style="margin-top:8px;font-size:14px;color:#6B5A4A;">VIP 权益：解锁全部声音与皮肤 · 持续免费更新</p>
+    </div>
 
-    <!-- ============================================================ -->
-    <!-- 声音列表 -->
-    <!-- ============================================================ -->
-    <section class="sounds" id="sounds">
-        <div class="container">
-            <div class="section-title">
-                <h2>🎵 14 首禅意声音</h2>
-                <p>从雨声到佛音，总有一首让你安住当下</p>
-            </div>
-            <div class="sound-grid">
-                <div class="sound-item">🔇 静音 <span class="free">免费</span></div>
-                <div class="sound-item">🌊 空谷溪音 <span class="free">免费</span></div>
-                <div class="sound-item">🌊 海边波浪 <span class="vip">VIP</span></div>
-                <div class="sound-item">🐦 布谷鸟鸣 <span class="vip">VIP</span></div>
-                <div class="sound-item">🐦 黄鹂清唱 <span class="vip">VIP</span></div>
-                <div class="sound-item">🐦 夜莺啼鸣 <span class="vip">VIP</span></div>
-                <div class="sound-item">🌧️ 细雨绵绵 <span class="vip">VIP</span></div>
-                <div class="sound-item">💧 飞瀑流泉 <span class="vip">VIP</span></div>
-                <div class="sound-item">🧘 432Hz 深度冥想 <span class="vip">VIP</span></div>
-                <div class="sound-item">🧘 528Hz 疗愈之音 <span class="vip">VIP</span></div>
-                <div class="sound-item">🪷 颂钵禅音 <span class="vip">VIP</span></div>
-                <div class="sound-item">🙏 南无阿弥陀佛 <span class="vip">VIP</span></div>
-                <div class="sound-item">🙏 六字大明咒 <span class="vip">VIP</span></div>
-                <div class="sound-item">🙏 大悲咒 <span class="vip">VIP</span></div>
-            </div>
-            <p style="text-align:center; margin-top:24px; color:#8A7A6A; font-size:14px;">
-                🔒 VIP 解锁全部声音 · 非 VIP 可免费体验静音与空谷溪音
-            </p>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- VIP 套餐 -->
-    <!-- ============================================================ -->
-    <section class="pricing container" id="pricing">
-        <div class="section-title">
-            <h2>👑 开通 VIP</h2>
-            <p>解锁全部声音与皮肤，让静心体验更完整</p>
-        </div>
-        <div class="pricing-grid">
-            <!-- 包月 -->
-            <div class="pricing-card">
-                <div class="name">连续包月</div>
-                <div class="original">原价 ¥8/月</div>
-                <div class="price">¥6 <small>/月</small></div>
-                <div class="desc">随时取消 · 灵活自由</div>
-                <button class="btn-price outline">开通</button>
-            </div>
-            <!-- 包年（推荐） -->
-            <div class="pricing-card popular">
-                <div class="popular-badge">⭐ 最划算</div>
-                <div class="name">连续包年</div>
-                <div class="original">原价 ¥51/年</div>
-                <div class="price">¥38 <small>/年</small></div>
-                <div class="desc">月均不到 ¥3.2 · 省 25%</div>
-                <button class="btn-price primary">立即开通</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 用户评价 -->
-    <!-- ============================================================ -->
-    <section class="testimonials container" id="testimonials">
-        <div class="section-title">
-            <h2>💬 他们说</h2>
-            <p>来自真实用户的声音</p>
-        </div>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"每天打坐时打开，看着香慢慢燃尽，心也跟着静下来了。最喜欢的 App，没有之一。"</p>
-                <div class="author">—— 静心修行者 · 小林</div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"烟雾动画太逼真了，声音也很丰富。睡前点一炷香，听着溪流声，入睡快多了。"</p>
-                <div class="author">—— 失眠改善者 · 阿杰</div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"佛音和颂钵声音非常清净，在家就能有禅堂的感觉。强烈推荐给佛友。"</p>
-                <div class="author">—— 佛弟子 · 慧明</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- CTA 底部 -->
-    <!-- ============================================================ -->
-    <section class="cta container" id="cta">
-        <h2>🕯️ 给自己一炷香的时间</h2>
-        <p>下载静心一炷香，开启你的禅修冥想之旅</p>
-        <a href="#" class="btn-primary">🔥 免费下载体验</a>
-        <p style="margin-top:16px; font-size:14px; color:#B0A098;">
-            iOS 15.0+ · 单机应用 · 无需登录
-        </p>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 页脚 -->
-    <!-- ============================================================ -->
-    <footer class="footer container">
+    <div class="card">
+        <h2>🔗 相关链接</h2>
         <div class="links">
-            <a href="privacy.html">隐私政策</a>
-            <a href="terms.html">服务条款</a>
-            <a href="support.html">技术支持</a>
-            <a href="mailto:mjxlzhang@sina.com">联系我们</a>
+            <a href="https://mjxlzhang.github.io/OneIncense-Support/privacy.html" class="link">隐私政策</a>
+            <a href="https://mjxlzhang.github.io/OneIncense-Support/terms.html" class="link">用户协议</a>
+            <a href="https://mjxlzhang.github.io/OneIncense-Support/support.html" class="link">支持</a>
         </div>
-        <p>&copy; 2026 静心一炷香 · OneIncense. All rights reserved.</p>
-    </footer>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 静心一炷香 · OneIncense. All rights reserved.</p>
+        <p style="margin-top:4px;font-size:13px;">📧 <a href="mailto:mjxlzhang@sina.com">mjxlzhang@sina.com</a></p>
+    </div>
 
 </body>
 </html>

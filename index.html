@@ -24,12 +24,14 @@
         .card p, .card li { font-size: 15px; color: #4A3A2A; }
         .card ul { padding-left: 20px; margin-top: 8px; }
         .card ul li { margin-bottom: 4px; }
-        .link { color: #FF6B00; text-decoration: none; font-weight: 600; }
-        .link:hover { text-decoration: underline; }
         .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #E0D8D0; font-size: 14px; color: #8A7A6A; }
         .footer a { color: #FF6B00; text-decoration: none; }
         .badge { display: inline-block; background: #FF6B00; color: #fff; font-size: 12px; padding: 2px 12px; border-radius: 50px; margin-left: 8px; }
         .links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 12px; }
+        .nav-bar { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 32px; padding: 16px 0; border-top: 1px solid #E0D8D0; }
+        .nav-bar a { display: inline-block; padding: 8px 18px; background: #FFFFFF; border: 1px solid #E0D8D0; border-radius: 50px; color: #FF6B00; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+        .nav-bar a:hover { background: #FF6B00; color: #fff; }
+        .nav-bar a.active { background: #FF6B00; color: #fff; cursor: default; }
     </style>
 </head>
 <body>
@@ -65,13 +67,11 @@
         <p style="margin-top:8px;font-size:14px;color:#6B5A4A;">VIP 权益：解锁全部声音与皮肤 · 持续免费更新</p>
     </div>
 
-    <div class="card">
-        <h2>🔗 相关链接</h2>
-        <div class="links">
-            <a href="https://mjxlzhang.github.io/OneIncense-Support/privacy.html" class="link">隐私政策</a>
-            <a href="https://mjxlzhang.github.io/OneIncense-Support/terms.html" class="link">用户协议</a>
-            <a href="https://mjxlzhang.github.io/OneIncense-Support/support.html" class="link">支持</a>
-        </div>
+    <div class="nav-bar">
+        <a href="index.html" class="active" aria-current="page">首页</a>
+        <a href="privacy.html">隐私政策</a>
+        <a href="terms.html">用户协议</a>
+        <a href="support.html">支持</a>
     </div>
 
     <div class="footer">

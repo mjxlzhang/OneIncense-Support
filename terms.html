@@ -24,6 +24,10 @@
         a:hover { text-decoration: underline; }
         .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #E0D8D0; text-align: center; font-size: 14px; color: #8A7A6A; }
         .highlight-box { background: #F5F0EB; border-left: 4px solid #FF6B00; padding: 12px 16px; border-radius: 4px; margin: 12px 0; }
+        .nav-bar { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 32px; padding: 16px 0; border-top: 1px solid #E0D8D0; }
+        .nav-bar a { display: inline-block; padding: 8px 18px; background: #FFFFFF; border: 1px solid #E0D8D0; border-radius: 50px; color: #FF6B00; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+        .nav-bar a:hover { background: #FF6B00; color: #fff; }
+        .nav-bar a.active { background: #FF6B00; color: #fff; cursor: default; }
     </style>
 </head>
 <body>
@@ -72,6 +76,13 @@
     <h2>8. 联系我们</h2>
     <p>如果您对本协议有任何疑问，请联系我们：</p>
     <p>📧 邮箱：<a href="mailto:mjxlzhang@sina.com">mjxlzhang@sina.com</a></p>
+
+    <div class="nav-bar">
+        <a href="index.html">首页</a>
+        <a href="privacy.html">隐私政策</a>
+        <a href="terms.html" class="active" aria-current="page">用户协议</a>
+        <a href="support.html">支持</a>
+    </div>
 
     <div class="footer">
         © 2026 静心一炷香 · OneIncense. All rights reserved.
